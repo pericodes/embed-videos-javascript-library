@@ -54,6 +54,17 @@
 								}, youtubeOptions); 
 		this.videoSources.push(dailymotionSource);
 
+		// vimeo
+		let vimeoDomain = new DomainSource("vimeo.com", /vimeo\.com\/(?<id>.+)(\?|$)/);
+		let vimeoOptions = new Map(); 
+			vimeoOptions.set("width", "640");
+			vimeoOptions.set("height", "360");
+			vimeoOptions.set("allow", "autoplay; fullscreen");
+		let vimeoSource = new VideoSource([vimeoDomain], function (id) {
+									return `https://player.vimeo.com/video/${id}?color=5cd7d4&byline=0&portrait=0`; 
+								}, vimeoOptions); 
+		this.videoSources.push(vimeoSource);
+
 		let detectDomain = function (url){
 			let domainRegex = /(?:(?:https?|ftp|file):\/\/)?(?<domain>[a-zA-z](?:[a-zA-Z0-9]|(?:(?:[\.\-_])\w)){1,252}\.(?<tdl>[a-zA-Z]{2,6})\.?)(?:\:\d{2,5})?(?:\/[\~\$\-\_\.\+\!\*\(\)\,\;\/\?\:\@\=\&a-zA-z\d\n]*)?/;
 			url = url.trim().toLowerCase();
