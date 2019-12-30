@@ -51,7 +51,7 @@
 			dailymotionOptions.set("allow", "autoplay");
 		let dailymotionSource = new VideoSource([dailymotionDomain, daiDomain], function (id) {
 									return `https://www.dailymotion.com/embed/video/${id}`; 
-								}, youtubeOptions); 
+								}, dailymotionOptions); 
 		this.videoSources.push(dailymotionSource);
 
 		// vimeo
