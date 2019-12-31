@@ -134,7 +134,7 @@
 			return iframe;
 		}
 
-		this.autoEmbedVideo = function(tagName, urlAttribute){
+		this.autoEmbedVideos = function(tagName, urlAttribute){
 			tagName = tagName ? tagName : "video-embed"; 
 			urlAttribute = urlAttribute ? urlAttribute : "src";
 			window.onload = function() {
