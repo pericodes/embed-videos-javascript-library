@@ -141,7 +141,14 @@
 				let elements = this.document.getElementsByTagName(tagName);
 				while (elements != undefined && elements.length > 0) {
 					let url = elements[0].getAttribute(urlAttribute);
-					elements[0].insertAdjacentHTML("beforebegin", self.video(url));
+					let attributes = elements[0].attributes;
+					let options = new Map(); 
+					for (let j = 0; j < attributes.length; j++) {
+						if(attributes[j].name != urlAttribute){
+							options.set(attributes[j].name, attributes[j].value);
+						}
+					}
+					elements[0].insertAdjacentHTML("beforebegin", self.video(url, options));
 					elements[0].parentNode.removeChild(elements[0]);
 				}
 			}
