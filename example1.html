@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="embed.js"></script>
+</head>
+<body>
+    <section id="preview"></section>
+    <section id="automatic-embed">
+      <video-embed-youtube src="https://www.youtube.com/watch?v=clXk1govJjA" width="200"></video-embed-youtube>
+      <video-embed src="https://www.dailymotion.com/video/x7po0zx?playlist=x63ggo"></video-embed>
+      <video-embed src="https://vimeo.com/378753132"></video-embed>
+      <video-embed src="https://www.instagram.com/p/B6vrbq8FpYN/?utm_source=ig_web_copy_link"></video-embed>
+  </section>
+<script type="text/javascript">
+    // Generic videos
+    let embed = new Embed(); 
+    embed.options.defaultOptions.set("class", "video");
+    embed.autoEmbedVideos();
+    let options = new Map(); 
+    //options.set("id", "vimeo-378753132");
+    document.getElementById("preview").insertAdjacentHTML("beforeend", embed.video("https://vimeo.com/378753132", options));
+
+    // Youtube
+    let youtube = new Embed(); 
+    youtube.autoEmbedVideos("video-embed-youtube");
+    youtube.options.finalOptions.set("height", "150em");
+</script>
+</body>
+</html>
