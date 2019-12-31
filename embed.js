@@ -2,7 +2,6 @@
 		this.name = name; 
 		this.regex = new RegExp(regex, "i"); 
 		this.getId = function (url) {
-			console.log(this.regex);
 			return url.match(this.regex).groups.id;
 		}
 	}
@@ -100,7 +99,6 @@
 			let exit = false; 
 			for (let i = 0; i < this.videoSources.length && !exit; i++) {
 				for (let j = 0; j < this.videoSources[i].domains.length && !exit; j++) {
-					console.log(this.videoSources[i].domains[j].name);
 					if (this.videoSources[i].domains[j].name == domain) {
 						id = this.videoSources[i].domains[j].getId(url); 
 						
@@ -134,5 +132,16 @@
 
 			iframe += "></iframe>"; 
 			return iframe;
+		}
+
+		this.autoEmbedVideo = function(){
+			window.onload = function() {
+				let elements = this.document.getElementsByTagName("video-embed");
+				while (elements != undefined && elements.length > 0) {
+					let url = elements[0].getAttribute("src");
+					elements[0].insertAdjacentHTML("beforebegin", self.video(url));
+					elements[0].parentNode.removeChild(elements[0]);
+				}
+			}
 		}
 	}
