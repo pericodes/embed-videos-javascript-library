@@ -74,6 +74,8 @@
 								}, instagramOptions); 
 		this.videoSources.push(instagramSource);
 
+
+
 		let detectDomain = function (url){
 			let domainRegex = /(?:(?:https?|ftp|file):\/\/)?(?<domain>[a-zA-z](?:[a-zA-Z0-9]|(?:(?:[\.\-_])\w)){1,252}\.(?<tdl>[a-zA-Z]{2,6})\.?)(?:\:\d{2,5})?(?:\/[\~\$\-\_\.\+\!\*\(\)\,\;\/\?\:\@\=\&a-zA-z\d\n]*)?/;
 			url = url.trim().toLowerCase();
@@ -145,9 +147,10 @@
 		}
 
 		this.autoEmbedVideos = function(tagName, urlAttribute){
-			tagName = tagName ? tagName : "video-embed"; 
-			urlAttribute = urlAttribute ? urlAttribute : "src";
-			window.onload = function() {
+
+			window.addEventListener("load", function() {
+				tagName = tagName ? tagName : "video-embed"; 
+				urlAttribute = urlAttribute ? urlAttribute : "src";
 				let elements = this.document.getElementsByTagName(tagName);
 				while (elements != undefined && elements.length > 0) {
 					let url = elements[0].getAttribute(urlAttribute);
@@ -161,6 +164,6 @@
 					elements[0].insertAdjacentHTML("beforebegin", self.video(url, options));
 					elements[0].parentNode.removeChild(elements[0]);
 				}
-			}
+			}, false);
 		}
 	}
