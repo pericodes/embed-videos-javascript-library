@@ -87,11 +87,12 @@
 			the attributes1 have prioriy over attributes2. 
 		*/
 		let joinAttributes = function (attributes1, attributes2) {
+			let aux = new Map(attributes1);
 			for(let [key, value] of attributes2){
-				if(!attributes1.has(key))
-					attributes1.set(key, value);
+				if(!aux.has(key))
+					aux.set(key, value);
 			}
-			return attributes1; 
+			return aux; 
 		};
 		
 		let addAttributes = function (attributes) {
@@ -128,6 +129,8 @@
 				console.error(`This domain (${domain}) is not supported yet.`); 
 			}else{
 				attributes = joinAttributes(attributes, this.options.defaultOptions);
+				attributes = joinAttributes(this.options.finalOptions, attributes);
+
 				if (options) {
 					if (options instanceof Map) {
 						attributes = joinAttributes(options, attributes);
