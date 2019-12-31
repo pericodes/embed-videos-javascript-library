@@ -200,3 +200,4 @@ This sources are native supported
 | 1 | YouTube |
 | 2 | Dailymotion |
 | 3 | Vimeo |
+| 4 | Instagram |

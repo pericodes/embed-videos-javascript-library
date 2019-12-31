@@ -64,6 +64,16 @@
 								}, vimeoOptions); 
 		this.videoSources.push(vimeoSource);
 
+		// instagram
+		let instagramDomain = new DomainSource("www.instagram.com", /p\/(?<id>.+?)(?:\/|\?|$)/);
+		let instagramOptions = new Map(); 
+			instagramOptions.set("width", "640");
+			instagramOptions.set("height", "360");
+		let instagramSource = new VideoSource([instagramDomain], function (id) {
+									return `https://www.instagram.com/p/${id}/embed/`; 
+								}, instagramOptions); 
+		this.videoSources.push(instagramSource);
+
 		let detectDomain = function (url){
 			let domainRegex = /(?:(?:https?|ftp|file):\/\/)?(?<domain>[a-zA-z](?:[a-zA-Z0-9]|(?:(?:[\.\-_])\w)){1,252}\.(?<tdl>[a-zA-Z]{2,6})\.?)(?:\:\d{2,5})?(?:\/[\~\$\-\_\.\+\!\*\(\)\,\;\/\?\:\@\=\&a-zA-z\d\n]*)?/;
 			url = url.trim().toLowerCase();
