@@ -134,11 +134,13 @@
 			return iframe;
 		}
 
-		this.autoEmbedVideo = function(){
+		this.autoEmbedVideo = function(tagName, urlAttribute){
+			tagName = tagName ? tagName : "video-embed"; 
+			urlAttribute = urlAttribute ? urlAttribute : "src";
 			window.onload = function() {
-				let elements = this.document.getElementsByTagName("video-embed");
+				let elements = this.document.getElementsByTagName(tagName);
 				while (elements != undefined && elements.length > 0) {
-					let url = elements[0].getAttribute("src");
+					let url = elements[0].getAttribute(urlAttribute);
 					elements[0].insertAdjacentHTML("beforebegin", self.video(url));
 					elements[0].parentNode.removeChild(elements[0]);
 				}
